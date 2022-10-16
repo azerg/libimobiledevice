@@ -74,8 +74,10 @@ jobs:
       run: make install
     - name: prepare artifact
       run: |
+          ls -l /bin
           mkdir -p dest
           DESTDIR=`pwd`/dest make install
+          cp /bin/libcrypto-1_1-x64.dll dest/libcrypto-1_1-x64.dll
           tar -C dest -cf libimobiledevice.tar ${{ env.dest }}
     - name: publish artifact
       uses: actions/upload-artifact@v2
